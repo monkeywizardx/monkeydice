@@ -21,10 +21,10 @@ EBNF:
 
 import random
 import re
-DICE_PATTERN = re.compile(r'\d+(d|D)\d+(( )?((\+|\-)( )?((\d)+)))*')
+ROLL_STRING_PATTERN = re.compile(r'\d+(d|D)\d+(( )?((\+|\-)( )?((\d)+)))*')
 SPLIT_PATTERN = re.compile(r'[dD+-]')
 WHITESPACE = re.compile(r'\w+')
-class DiceStringException(Exception):
+class RollStringException(Exception):
     '''
     Exception raised for invalid roll string.
     '''
@@ -92,8 +92,8 @@ def _parse_roll_string(str_):
     RETURNS:
         a dict describing the dice roll to be passed to _roll_ast.
     '''
-    if not DICE_PATTERN.match(str_):
-        raise DiceStringException('Invalid dice expression')
+    if not ROLL_STRING_PATTERN.match(str_):
+        raise RollStringException('Invalid roll string')
     dice_str = WHITESPACE.sub(str_, '') # Strip WHITESPACE
     tokens = [int(token) if token.is_digit() else token for token in SPLIT_PATTERN.split(dice_str)]
     ast = {
