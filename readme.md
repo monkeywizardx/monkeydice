@@ -24,3 +24,9 @@ MonkeyDice is a simple python library meant to make RPG-style dice rolling easy.
   import monkeydice as dice
   dice.roll('2d6 + 8 - 2')
   ```
+5. Repeating a dice roll
+```python
+import monkeydice as dice
+roll = dice.DiceRoll('2d6 + 3')
+roll.roll() # Equivalent to dice.roll('2d6 + 3')
+```
