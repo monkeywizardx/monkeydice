@@ -66,7 +66,7 @@ class DiceRoll:
         add_string = ""
         for roll in enumeration['dice rolls']:
             if add_string:
-                add_string = ' + '.join([roll])
+                add_string = ' + '.join([add_string, roll])
             else:
                 add_string = str(roll)
         return "{}d{}+{} = {} ({})".format(self.ast['number_of_dice'],
